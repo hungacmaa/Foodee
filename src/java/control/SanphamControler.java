@@ -54,9 +54,6 @@ public class SanphamControler extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("common").include(request, response);
-        Cookie ck = new Cookie("ten", "hung");
-        ck.setMaxAge(10);
-        response.addCookie(ck);
         String nameKey = (request.getParameter("nameKey")!=null)?request.getParameter("nameKey"):"";
         List<SanPham> dssp = new SanPhamDAO().getProductByNameKey(nameKey);
         request.setAttribute("dssp", dssp);

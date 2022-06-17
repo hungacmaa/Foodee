@@ -48,7 +48,7 @@
                             <p class="tongtien">
                                 Tổng tiền : <%= currencyVN.format(tongtien)%></span>
                             </p>
-                            <form action="./hoadon" method="POST">
+                            <form action="./hoadon" method="POST" enctype="multipart/form-data">
                                 <div class="thongtin-item">
                                     <p class="tieude-thongtin">Họ tên</p>
                                     <input type="text" name="name"/>

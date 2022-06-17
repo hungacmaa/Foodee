@@ -18,12 +18,12 @@ import model.LoaiDA;
  * @author Admin
  */
 public class LoaiDADAO {
+
     private String tableName = "Category";
     private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    
     public List<LoaiDA> getAllCategory() {
         List<LoaiDA> list = new ArrayList<>();
         String query = "select * from " + tableName;
@@ -31,7 +31,6 @@ public class LoaiDADAO {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-
             while (rs.next()) {
                 list.add(new LoaiDA(rs.getInt(1),
                         rs.getString(2),
@@ -39,6 +38,7 @@ public class LoaiDADAO {
                         rs.getString(4))
                 );
             }
+            conn.close();
         } catch (Exception e) {
         }
         return list;
@@ -58,6 +58,7 @@ public class LoaiDADAO {
                         rs.getString(4))
                 );
             }
+            conn.close();
         } catch (Exception e) {
         }
         return list;

@@ -18,6 +18,7 @@ import model.SanPham;
  * @author Admin
  */
 public class SanPhamDAO {
+
     private String tableName = "Product";
     private Connection conn = null;
     private PreparedStatement ps = null;
@@ -76,16 +77,15 @@ public class SanPhamDAO {
         }
         return res;
     }
-    
+
     public List<SanPham> getProductByCid(int cid) {
         List<SanPham> list = new ArrayList<>();
-        
-        String query = "select * from " + tableName + " where categoryid = "+cid;
+
+        String query = "select * from " + tableName + " where categoryid = " + cid;
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            
             while (rs.next()) {
                 list.add(new SanPham(
                         rs.getInt(1),
@@ -105,16 +105,15 @@ public class SanPhamDAO {
         }
         return list;
     }
-    
-    public List<SanPham> getProductByNameKey(String nameKey){
+
+    public List<SanPham> getProductByNameKey(String nameKey) {
         List<SanPham> list = new ArrayList<>();
-        String query = "select * from "+tableName+" where name like '%"+nameKey+"%'";
+        String query = "select * from " + tableName + " where name like '%" + nameKey + "%'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
-            
-           while (rs.next()) {
+            while (rs.next()) {
                 list.add(new SanPham(
                         rs.getInt(1),
                         rs.getString(2),
@@ -128,14 +127,14 @@ public class SanPhamDAO {
                         rs.getInt(10),
                         rs.getInt(11))
                 );
-            } 
+            }
         } catch (Exception e) {
         }
         return list;
     }
-    
-    public void updateAmount(int id, int amount ) {
-        String query = "update Product set amount = amount+"+amount+" where id = "+id;
+
+    public void updateAmount(int id, int amount) {
+        String query = "update Product set amount = amount+" + amount + " where id = " + id;
         SanPham res = null;
         try {
             conn = new DBContext().getConnection();
@@ -144,5 +143,5 @@ public class SanPhamDAO {
         } catch (Exception e) {
         }
     }
-    
+
 }
